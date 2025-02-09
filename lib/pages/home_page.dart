@@ -11,19 +11,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _textController = TextEditingController();
-  int likeCount = 152;
+  int likeCount = 842;
 
   List songList = [
     ['Frank Ocean - White Ferrari', false],
     ['Frank Ocean - Pink + White', false],
     ['Frank Ocean - Ivy', false],
-    ['Frank Ocean - Self Control', false],
-    ['Frank Ocean - Nights', false],
-    ['Frank Ocean - Seigfried', false],
     ['Frank Ocean - Godspeed', false],
-    ['Frank Ocean - Futura Free', false],
-    ['Frank Ocean - Chanel', false],
-    ['Frank Ocean - Provider', false],
+    ['Frank Ocean - Wise Men', false],
   ];
 
   void checkBoxChanged(bool? value, int index) {
@@ -67,6 +62,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -92,16 +88,16 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Colors.redAccent,
+                      color: Colors.blueAccent[400],
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      'Likes: $likeCount',
+                      'Likes:  $likeCount',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'NexaHeavy',
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -158,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                         'Now Playing',
                         style: TextStyle(
                           fontFamily: 'NexaHeavy',
-                          color: Colors.white70,
+                          color: Colors.grey[400],
                           fontSize: 14,
                         ),
                       ),

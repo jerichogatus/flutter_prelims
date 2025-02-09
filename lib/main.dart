@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Frank Ocean Mix',
       theme: ThemeData(
-        fontFamily: 'NexaHeavy',  // Apply the custom font globally
+        fontFamily: 'NexaHeavy', 
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey),
         scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
