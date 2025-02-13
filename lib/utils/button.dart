@@ -5,7 +5,7 @@ class Button extends StatelessWidget {
   final VoidCallback onPressed; // Function when button is clicked
 
   const Button({
-    super.key,
+    super.key, 
     required this.text,
     required this.onPressed,
   });
