@@ -56,17 +56,21 @@ class TodoTile extends StatelessWidget {
                     taskName,
                     style: TextStyle(
                       fontFamily: 'NexaHeavy',
-                      color: Colors.white, // White text
-                      fontSize: 15,
+                      color: Colors.white,
+                      fontSize: 18,
                       fontWeight: FontWeight.w500,
                       decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                      decorationColor: Colors.red, // Change line color
+                      decorationThickness: 5, // Thicker line
                     ),
                   ),
                 ),
               ),
+
+              // Checkbox on the right
               Checkbox(
                 value: taskCompleted,
-                onChanged: onChanged, // Toggle checkbox
+                onChanged: onChanged,
                 activeColor: Colors.black,
                 checkColor: Colors.blueAccent,
                 fillColor: WidgetStateProperty.all(Colors.white),
