@@ -11,22 +11,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _textController = TextEditingController();
-  int likeCount = 842;
+  int likeCount = 842; // Like counter
 
+  // List of songs (with checkbox state)
   List songList = [
     ['Frank Ocean - White Ferrari', false],
     ['Frank Ocean - Pink + White', false],
     ['Frank Ocean - Ivy', false],
     ['Frank Ocean - Godspeed', false],
-    ['Frank Ocean - Wise Men', false],
   ];
 
+  // Change checkbox when tapped
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      songList[index][1] = !songList[index][1];
+      songList[index][1] = !songList[index][1]; // Toggle the checkbox
     });
   }
 
+  // Show dialog box to add a new song
   void createNewSong() {
     showDialog(
       context: context,
@@ -36,23 +38,25 @@ class _HomePageState extends State<HomePage> {
           onSave: saveNewSong,
           onCancel: () {
             setState(() {
-              _textController.clear();
+              _textController.clear(); // Clear input field
             });
-            Navigator.pop(context);
+            Navigator.pop(context); // Close dialog
           },
         );
       },
     );
   }
 
+  // Save new song to the list
   void saveNewSong() {
     setState(() {
-      songList.add([_textController.text, false]);
+      songList.add([_textController.text, false]); // Add new song with checkbox false
       _textController.clear();
     });
     Navigator.pop(context);
   }
 
+  // Delete a song from the list
   void deleteSong(int index) {
     setState(() {
       songList.removeAt(index);
@@ -62,64 +66,66 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black, // Set background to black
       appBar: AppBar(
         title: Center(
           child: Text(
-            'Frank Ocean Mix',
+            'Frank Ocean Mix', // App title
             style: TextStyle(
-              fontFamily: 'NexaHeavy',
-              color: Colors.cyanAccent[100],
+              fontFamily: 'NexaHeavy', // Custom font
+              color: Color(0xFFA9B5DF), // Cyan color
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
           ),
         ),
         elevation: 0,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black, // Black background
       ),
       body: Column(
         children: [
+          // Likes counter
           Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Row(
               children: [
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Colors.blueAccent[400],
+                      color: Color(0xFF2D336B), // Blue container
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       'Likes:  $likeCount',
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.white, // White text
                         fontFamily: 'NexaHeavy',
-                        fontSize: 18,
+                        fontSize: 15,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 10), // Add spacing
 
                 FloatingActionButton(
                   onPressed: () {
                     setState(() {
-                      likeCount += 1;
+                      likeCount += 1; // Increase like count
                     });
                   },
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Colors.redAccent, // Red heart button
                   child: Icon(Icons.favorite, color: Colors.white),
                 ),
               ],
             ),
           ),
 
+          // Song List
           Expanded(
             child: ListView.builder(
-              itemCount: songList.length,
+              itemCount: songList.length, // Dynamically show songs
               itemBuilder: (context, index) {
                 return TodoTile(
                   taskName: songList[index][0],
@@ -131,21 +137,22 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
+          // Now Playing section
           Container(
-            color: Colors.blueGrey[900],
+            color: Colors.blueGrey[900], // Dark blue-grey background
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
                   child: Image.asset(
-                    'images/album.jpeg',
+                    'images/album.jpeg', // Show album image
                     width: 80,
                     height: 80,
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 15), // Spacing
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,16 +161,16 @@ class _HomePageState extends State<HomePage> {
                         'Now Playing',
                         style: TextStyle(
                           fontFamily: 'NexaHeavy',
-                          color: Colors.grey[400],
-                          fontSize: 14,
+                          color: Colors.grey[400], // Grey text
+                          fontSize: 12,
                         ),
                       ),
                       Text(
                         'Frank Ocean - Nights',
                         style: TextStyle(
                           fontFamily: 'NexaHeavy',
-                          color: Colors.white,
-                          fontSize: 20,
+                          color: Colors.white, // White text
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -176,7 +183,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: createNewSong,
+        onPressed: createNewSong, // Add song button
         backgroundColor: Colors.blueGrey,
         child: Icon(Icons.add, color: Colors.white),
       ),

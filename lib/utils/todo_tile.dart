@@ -18,44 +18,58 @@ class TodoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2), // Spacing
       child: Slidable(
         endActionPane: ActionPane(
           motion: ScrollMotion(),
           children: [
             SlidableAction(
-              onPressed: onDelete,
+              onPressed: onDelete, // Delete song
               icon: Icons.delete,
-              foregroundColor: Colors.redAccent,
-              backgroundColor: Colors.blueGrey,
+              foregroundColor: Colors.white, // Red delete button
+              backgroundColor: Colors.red,
+              borderRadius: BorderRadius.circular(12),
             ),
           ],
         ),
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: Colors.grey[900],
+            color: Colors.grey[900], // Dark grey background
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'images/album.jpeg', // Show album image
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    taskName,
+                    style: TextStyle(
+                      fontFamily: 'NexaHeavy',
+                      color: Colors.white, // White text
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                    ),
+                  ),
+                ),
+              ),
               Checkbox(
                 value: taskCompleted,
-                onChanged: onChanged,
-                activeColor: Colors.blueGrey,
-              ),
-              SizedBox(width: 10),
-              Text(
-                taskName,
-                style: TextStyle(
-                  fontFamily: 'NexaHeavy',
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  decoration: taskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                ),
+                onChanged: onChanged, // Toggle checkbox
+                activeColor: Colors.black,
+                checkColor: Colors.blueAccent,
+                fillColor: WidgetStateProperty.all(Colors.white),
               ),
             ],
           ),
